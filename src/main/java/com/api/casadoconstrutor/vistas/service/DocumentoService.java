@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -20,7 +21,7 @@ public class DocumentoService {
     @Autowired
     DocumentoRepository documentoRepository;
 
-    public Documento save(MultipartFile file) throws IOException {
+    public Documento uploadFile(MultipartFile file) throws IOException {
 
         //cria o diretório de upload se não existir
         Path uploadPath = Paths.get(uploadDir);
@@ -58,6 +59,10 @@ public class DocumentoService {
         Files.deleteIfExists(filePath);
 
         documentoRepository.delete(documento);
+    }
+
+    public List<Documento> getAllDocuments() {
+        return documentoRepository.findAll();
     }
 
 }
