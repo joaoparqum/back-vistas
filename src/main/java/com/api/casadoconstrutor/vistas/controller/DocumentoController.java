@@ -50,4 +50,13 @@ public class DocumentoController {
     public ResponseEntity<List<Documento>> getAllDocuments() {
         return ResponseEntity.status(HttpStatus.CREATED).body(documentoService.getAllDocuments());
     }
+
+    @GetMapping("/nomeArquivo/{nomeArquivo}")
+    public ResponseEntity<Object> getDocumentoByNome(@PathVariable(value = "nomeArquivo") String nomeArquivo) {
+        List<Documento> documento = documentoService.findByNomeArquivo(nomeArquivo);
+        if(documento.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Documento não encontrado!!");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(documento);
+    }
 }
