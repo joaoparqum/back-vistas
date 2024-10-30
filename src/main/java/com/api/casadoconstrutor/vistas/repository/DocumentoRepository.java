@@ -10,6 +10,6 @@ import java.util.UUID;
 @Repository
 public interface DocumentoRepository extends JpaRepository<Documento, UUID> {
 
-    List<Documento> findByNomeArquivo(String nomeArquivo);
+    List<Documento> findByNomeArquivoContaining(String nomeArquivo);
 
 }

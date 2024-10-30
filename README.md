@@ -6,7 +6,7 @@ Este projeto é uma API RESTful para um sistema de vistas explodidas, desenvolvi
 
 - **Java 17:** Linguagem de programação utilizada.
 - **Spring Boot:** Framework para criação de aplicações Java.
-- **Postgres:** Banco de dados relacional.
+- **PostgreSQL:** Banco de dados relacional.
 - **Spring Security:** Framework para autenticação e autorização.
 
 ## Funcionalidades
@@ -21,8 +21,8 @@ Este projeto é uma API RESTful para um sistema de vistas explodidas, desenvolvi
    git clone https://github.com/joaoparqum/back-vistas
 
 2. Configure o banco de dados no application.properties:
-  ```   
-  spring.datasource.url=jdbc:postgresql://localhost:5432/vistas-db
-  spring.datasource.username=seu-usuario
-  spring.datasource.password=sua-senha
+     ```   
+     spring.datasource.url=jdbc:postgresql://localhost:5432/vistas-db
+     spring.datasource.username=seu-usuario
+     spring.datasource.password=sua-senha
   

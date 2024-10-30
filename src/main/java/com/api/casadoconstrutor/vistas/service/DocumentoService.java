@@ -66,7 +66,7 @@ public class DocumentoService {
     }
 
     public List<Documento> findByNomeArquivo(String nomeArquivo) {
-        return documentoRepository.findByNomeArquivo(nomeArquivo);
+        return documentoRepository.findByNomeArquivoContaining(nomeArquivo);
     }
 
 }
