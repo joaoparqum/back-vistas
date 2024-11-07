@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -59,4 +60,15 @@ public class DocumentoController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(documento);
     }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Object> getOneDocumento(@PathVariable(value = "id") UUID id){
+        Optional<Documento> documento = documentoService.findById(id);
+        if (!documento.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Documento não encontrado!.");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(documento.get());
+    }
+
+
 }

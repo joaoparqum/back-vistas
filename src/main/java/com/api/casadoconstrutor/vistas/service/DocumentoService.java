@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -67,6 +68,10 @@ public class DocumentoService {
 
     public List<Documento> findByNomeArquivo(String nomeArquivo) {
         return documentoRepository.findByNomeArquivoContaining(nomeArquivo);
+    }
+
+    public Optional<Documento> findById(UUID id) {
+        return documentoRepository.findById(id);
     }
 
 }
