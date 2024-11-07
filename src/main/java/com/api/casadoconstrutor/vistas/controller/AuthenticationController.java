@@ -41,7 +41,7 @@ public class AuthenticationController {
             var user = (User) auth.getPrincipal();
             var token = tokenService.generateToken(user);
 
-            return ResponseEntity.ok(new LoginDto(token, user.getRole().getRole()));
+            return ResponseEntity.ok(new LoginDto(token, user.getRole().getRole(), user.getLogin()));
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Erro: Credenciais inválidas.");
         }
