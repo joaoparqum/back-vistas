@@ -41,6 +41,18 @@ public class DocumentoController {
         return new ResponseEntity<>(fileData, headers, HttpStatus.OK);
     }
 
+    @GetMapping("/view/{id}")
+    public ResponseEntity<byte[]> viewFile(@PathVariable UUID id) throws IOException {
+
+        byte[] fileData = documentoService.downloadFile(id);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("inline", "document.pdf");
+
+        return new ResponseEntity<>(fileData, headers, HttpStatus.OK);
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteFile(@PathVariable UUID id) throws IOException {
         documentoService.deleteFile(id);
