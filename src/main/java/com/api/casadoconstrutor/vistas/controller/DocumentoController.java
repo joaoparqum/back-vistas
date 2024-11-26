@@ -30,7 +30,7 @@ public class DocumentoController {
     }
 
     @GetMapping("/download/{id}")
-    public ResponseEntity<byte[]> downloadFile(@PathVariable UUID id) throws IOException {
+    public ResponseEntity<byte[]> downloadFile(@PathVariable Long id) throws IOException {
         byte[] fileData = documentoService.downloadFile(id);
 
         // Definir os cabeçalhos da resposta para o download
@@ -42,7 +42,7 @@ public class DocumentoController {
     }
 
     @GetMapping("/view/{id}")
-    public ResponseEntity<byte[]> viewFile(@PathVariable UUID id) throws IOException {
+    public ResponseEntity<byte[]> viewFile(@PathVariable Long id) throws IOException {
 
         byte[] fileData = documentoService.downloadFile(id);
 
@@ -54,7 +54,7 @@ public class DocumentoController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteFile(@PathVariable UUID id) throws IOException {
+    public ResponseEntity<Void> deleteFile(@PathVariable Long id) throws IOException {
         documentoService.deleteFile(id);
         return ResponseEntity.noContent().build();
     }
@@ -74,7 +74,7 @@ public class DocumentoController {
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<Object> getOneDocumento(@PathVariable(value = "id") UUID id){
+    public ResponseEntity<Object> getOneDocumento(@PathVariable(value = "id") Long id){
         Optional<Documento> documento = documentoService.findById(id);
         if (!documento.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Documento não encontrado!.");

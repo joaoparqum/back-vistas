@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface DocumentoRepository extends JpaRepository<Documento, UUID> {
+public interface DocumentoRepository extends JpaRepository<Documento, Long> {
 
     List<Documento> findByNomeArquivoContaining(String nomeArquivo);
 

@@ -15,7 +15,7 @@ public class Documento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
 
     private String nomeArquivo;
     private String tipoArquivo;

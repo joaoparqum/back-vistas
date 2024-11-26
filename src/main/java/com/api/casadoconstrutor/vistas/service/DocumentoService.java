@@ -44,7 +44,7 @@ public class DocumentoService {
         return documentoRepository.save(documento);
     }
 
-    public byte[] downloadFile(UUID id) throws IOException {
+    public byte[] downloadFile(Long id) throws IOException {
         Documento documento = documentoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Documento não encontrado!!"));
 
@@ -52,7 +52,7 @@ public class DocumentoService {
         return Files.readAllBytes(filePath);
     }
 
-    public void deleteFile(UUID id) throws IOException {
+    public void deleteFile(Long id) throws IOException {
         Documento documento = documentoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Documento não encontrado!!"));
 
@@ -70,7 +70,7 @@ public class DocumentoService {
         return documentoRepository.findByNomeArquivoContaining(nomeArquivo);
     }
 
-    public Optional<Documento> findById(UUID id) {
+    public Optional<Documento> findById(Long id) {
         return documentoRepository.findById(id);
     }
 
