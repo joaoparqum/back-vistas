@@ -10,7 +10,7 @@ services:
       - app-net
 
   frontend:
-    build: ../vistas-front/.
+    build: ../front-vistas/.
     ports:
       - 5173:80
 
