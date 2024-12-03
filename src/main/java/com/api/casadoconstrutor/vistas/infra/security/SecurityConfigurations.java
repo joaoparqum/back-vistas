@@ -37,11 +37,11 @@ public class SecurityConfigurations {
                 .cors().and()// Habilita CORS global
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/vistas/upload").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/vistas/delete/{id}").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/vistas/upload").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/vistas/delete/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

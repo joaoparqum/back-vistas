@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/vistas")
+@RequestMapping("/api/vistas")
 public class DocumentoController {
 
     final DocumentoService documentoService;
