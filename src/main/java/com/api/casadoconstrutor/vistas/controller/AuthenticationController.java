@@ -40,6 +40,7 @@ public class AuthenticationController {
             var auth = authenticationManager.authenticate(usernamePassword);
             var user = (User) auth.getPrincipal();
             var token = tokenService.generateToken(user);
+            System.out.println("Token gerado: " + token);
 
             return ResponseEntity.ok(new LoginDto(token, user.getRole().getRole(), user.getLogin()));
         } catch (BadCredentialsException e) {
