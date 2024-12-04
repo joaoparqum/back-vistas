@@ -39,8 +39,8 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/vistas/upload").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/vistas/delete/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/vistas/upload").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/vistas/delete/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                         .anyRequest().authenticated()
                 )
