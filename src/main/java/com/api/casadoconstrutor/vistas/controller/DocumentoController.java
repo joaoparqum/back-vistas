@@ -26,6 +26,11 @@ public class DocumentoController {
     @PostMapping("/upload")
     public ResponseEntity<Documento> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
         Documento document = documentoService.uploadFile(file);
+
+        if (file.isEmpty()) {
+            System.out.println("Arquivo não enviado ou está vazio!!");
+        }
+
         return new ResponseEntity<>(document, HttpStatus.CREATED);
     }
 
