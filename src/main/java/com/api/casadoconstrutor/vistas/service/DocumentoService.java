@@ -23,19 +23,18 @@ public class DocumentoService {
     DocumentoRepository documentoRepository;
 
     public Documento uploadFile(MultipartFile file) throws IOException {
-
-        //cria o diretório de upload se não existir
+        // Cria o diretório de upload se não existir
         Path uploadPath = Paths.get(uploadDir);
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
 
-        //salva o arquivo no diretório
+        // Salva o arquivo no diretório
         String fileName = file.getOriginalFilename();
         Path filePath = uploadPath.resolve(fileName);
         Files.copy(file.getInputStream(), filePath);
 
-        //arquiva no banco
+        // Arquiva no banco de dados
         Documento documento = new Documento();
         documento.setNomeArquivo(fileName);
         documento.setTipoArquivo(file.getContentType());

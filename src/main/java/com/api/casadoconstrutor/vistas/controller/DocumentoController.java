@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/vistas")
+@RequestMapping("/vistas")
 public class DocumentoController {
 
     final DocumentoService documentoService;
@@ -24,14 +25,24 @@ public class DocumentoController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<Documento> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
-        Documento document = documentoService.uploadFile(file);
+    public ResponseEntity<List<Documento>> uploadFiles(@RequestParam("files[]") MultipartFile[] files) throws IOException {
+        List<Documento> documentos = new ArrayList<>();
 
-        if (file.isEmpty()) {
-            System.out.println("Arquivo não enviado ou está vazio!!");
+        if (files.length == 0) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // Caso nenhum arquivo seja enviado
         }
 
-        return new ResponseEntity<>(document, HttpStatus.CREATED);
+        // Processa cada arquivo enviado
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
+                Documento document = documentoService.uploadFile(file);
+                documentos.add(document);
+            } else {
+                System.out.println("Arquivo vazio recebido: " + file.getOriginalFilename());
+            }
+        }
+
+        return new ResponseEntity<>(documentos, HttpStatus.CREATED);
     }
 
     @GetMapping("/download/{id}")
