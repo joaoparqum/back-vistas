@@ -1,15 +1,5 @@
 version: '3'
 services:
-  postgres-vistas:
-    container_name: postgres-vistas
-    image: postgres:15
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: hanamichi
-      POSTGRES_DB: vistas-db
-    networks:
-      - app-net
-
   frontend-vistas:
     container_name: frontend-vistas
     build: ../front-vistas/.
@@ -25,11 +15,9 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=hanamichi
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-vistas:5432/vistas-db
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=hanamichi
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://24.144.93.247:5432/vistas_db
+      - SPRING_DATASOURCE_USERNAME=vistas_user
+      - SPRING_DATASOURCE_PASSWORD=vistas123
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create
     depends_on:
       - postgres-vistas
