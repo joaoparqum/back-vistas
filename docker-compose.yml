@@ -1,6 +1,7 @@
 version: '3'
 services:
-  postgres:
+  postgres-vistas:
+    container_name: postgres-vistas
     image: postgres:15
     environment:
       POSTGRES_USER: postgres
@@ -9,23 +10,24 @@ services:
     networks:
       - app-net
 
-  frontend:
+  frontend-vistas:
+    container_name: frontend-vistas
     build: ../front-vistas/.
     ports:
       - 5173:80
     networks:
       - app-net
 
-  spring-app:
+  spring-vistas:
     build: .
-    container_name: spring-app
+    container_name: spring-vistas
     restart: always
     ports:
       - "8080:8080"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=hanamichi
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/vistas-db
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-vistas:5432/vistas-db
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=hanamichi
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create
