@@ -32,7 +32,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=hanamichi
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create
     depends_on:
-      - postgres
+      - postgres-vistas
     networks:
       - app-net
 
